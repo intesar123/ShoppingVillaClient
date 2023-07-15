@@ -50,10 +50,13 @@
                             <span class="text-danger" *ngIf="(registerForm.get('confirmPassword')?.errors?.['required'] && submitted)">
                                 Confirm Password is required
                             </span>
+                            <span class="text-danger" *ngIf="(registerForm.errors?.['patwordmatcherror'] && submitted && !registerForm.get('confirmPassword')?.errors?.['required'])">
+                                Confirm Password should match with password
+                            </span>
                         </div>
                         <div class="form-group text-end">
                             <br>
-                            <re-captcha (resolved)="resolved($event)" siteKey="6LeDigsUAAAAAIxGdxq4KgGT0SopCrDyXmdi9MO-"></re-captcha>
+                            <re-captcha (resolved)="resolved($event)" siteKey="6LeDigsUAAAAAIxGdxq4KgGT0SopCrDyXmdi9MO-" (errored)="errored()"></re-captcha>
                         </div>
                         <div class="form-group text-end">
                             <br>

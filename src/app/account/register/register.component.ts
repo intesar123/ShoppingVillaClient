@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { matchpassword } from 'src/app/common/validators/passwordMatch.validator';
 import { AccountService } from 'src/app/services/account.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +12,8 @@ import { AccountService } from 'src/app/services/account.service';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   submitted: boolean=false;
-  constructor(private service:AccountService) {
+  public isCaptchaValidated: boolean = false; 
+  constructor(private service:AccountService,private messageService:MessageService) {
    
   }
 
@@ -22,21 +25,43 @@ export class RegisterComponent implements OnInit {
       mobile: new FormControl('',Validators.required),
       password: new FormControl('',Validators.required),
       confirmPassword: new FormControl('',Validators.required),
-
-    });
+    },
+    {
+      validators: matchpassword
+    }
+    );
   }
 
   onSubmit(form: FormGroup){
-        console.log(form.value);
+
         this.submitted=true;
-        this.service.register(form.value).subscribe(m=>{
-          this.submitted=false;
-          alert(m);
-        })
+        if(!form.valid)
+        {
+          return;
+        }
+        if(!this.isCaptchaValidated)
+        {
+          this.messageService.showMessage("","Please validate captcha!");
+          return;
+        }
+
+          this.service.register(form.value).subscribe(m=>{
+            this.submitted=false;
+            alert(m);
+          })
+        
   }
 
 
   resolved(captchaResponse: string) {
-    console.log(`Resolved captcha with response: ${captchaResponse}`);
+    if(captchaResponse!=null && captchaResponse.length>0)
+    {
+      this.isCaptchaValidated=true;
+    }
+   // console.log(`Resolved captcha with response: ${captchaResponse}`);
+  }
+  errored() {
+    this.isCaptchaValidated=false;
+    console.warn(`reCAPTCHA error encountered`);
   }
 }
