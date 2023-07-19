@@ -30,7 +30,6 @@ export class LoginComponent {
       return;
     }
     this.service.login(form.value).subscribe(result=>{
-
       console.log(result);
       this.router.navigateByUrl("dashboard");
     });
