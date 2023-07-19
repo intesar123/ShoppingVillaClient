@@ -5,6 +5,7 @@ import { Register } from '../models/account/register';
 import { Observable, catchError, throwError } from 'rxjs';
 import { LoaderService } from './loader.service';
 import { MessageService } from './message.service';
+import { UserLogin } from '../models/account/user-login';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +18,10 @@ export class AccountService {
   register(register:Register):Observable<any>{
       return this.http.post(this.url+"Register",register).pipe(catchError(this.handleError.bind(this)));
   }
+
+  login(login:UserLogin):Observable<any>{
+    return this.http.post(this.url+"Login",login).pipe(catchError(this.handleError.bind(this)));
+}
 
   private handleError(error: HttpErrorResponse) {
     debugger;
