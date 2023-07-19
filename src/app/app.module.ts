@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoaderComponent } from './common/loader/loader.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { MessageComponent } from './common/message/message.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MessageComponent } from './common/message/message.component';
     NavigationBarComponent,
     RegisterComponent,
     LoaderComponent,
-    MessageComponent
+    MessageComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
