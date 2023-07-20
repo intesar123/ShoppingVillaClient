@@ -1,0 +1,10 @@
+.nav-img{
+    height: 50px;   
+}
+.container-fluid{
+    padding-left: 0;
+}
+.navbar {
+    --bs-navbar-padding-y: 0;
+    --bs-navbar-brand-padding-y: 0;
+}

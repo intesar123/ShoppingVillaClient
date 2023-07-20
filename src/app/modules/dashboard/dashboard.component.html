@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row" style="background-color: azure;height: 94vh;">
+        <div class="col-lg-2 col-md-3 leftmenu">
+            <div class="container mt-3" style="padding: 0;">
+              
+                <ul class="nav flex-column">
+                  <li class="nav-item" *ngFor="let data of modules">
+                    <a class="nav-link" [routerLink]="[data.alias]"><i class="bi bi-arrow-right-short"></i> {{data.name}}</a>
+                  </li>
+                </ul>
+              </div>
+              
+        </div>
+        <div class="col-lg-10 col-md-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end" [ngClass]="showRightMenu?'show':''" id="rowRightMenu">
+        <div class="offcanvas-header">
+          <h4 class="offcanvas-title">Intesar Alam</h4>
+          <button type="button" class="btn-close"  (click)="showHideMenu()"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="container mt-3" style="padding: 0;">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-person"></i> Profile</a>
+                  </li>
+                  <li class="nav-item" (click)="logOff()">
+                    <a class="nav-link" href="#"><i class="bi bi-power"></i> Logout</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+      </div>
+</div>

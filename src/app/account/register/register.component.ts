@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { matchpassword } from 'src/app/common/validators/passwordMatch.validator';
 import { AccountService } from 'src/app/services/account.service';
@@ -7,7 +7,8 @@ import { MessageService } from 'src/app/services/message.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  encapsulation:ViewEncapsulation.None
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;

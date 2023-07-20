@@ -1,0 +1,17 @@
+.leftmenu{
+    background-color: #374444!important;
+}
+/* .nav-item{
+    background-color: #445858;
+    border: 2px solid #666b6b;
+} */
+/* .nav-item:hover{
+    background-color: rgb(95, 101, 160);
+    border: 2px solid #666b6b;
+} */
+.nav-item>a{
+    color: white;
+}
+.offcanvas-body{
+    background-color: #374444!important; 
+}

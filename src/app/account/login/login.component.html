@@ -15,7 +15,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password" class="text-info">Password:</label><br>
-                            <input type="text" name="password" id="password" formControlName="password" class="form-control">
+                            <input type="password" name="password" id="password" formControlName="password" class="form-control">
                             <span class="text-danger" *ngIf="(frmLogin.get('password')?.errors?.['required'] && submitted)">
                                 Password is required
                             </span>

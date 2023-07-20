@@ -1,34 +1,22 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {  HttpClient, HttpErrorResponse} from '@angular/common/http';
-import { Common } from '../utilities/common';
-import { Register } from '../models/account/register';
-import { Observable, catchError, throwError } from 'rxjs';
-import { LoaderService } from './loader.service';
 import { MessageService } from './message.service';
-import { UserLogin } from '../models/account/user-login';
+import { Observable, catchError, throwError } from 'rxjs';
+import { Common } from '../utilities/common';
+import { Module } from '../models/module';
+
 @Injectable({
   providedIn: 'root'
 })
-export class AccountService {
-  url:string;
-  constructor(private http: HttpClient,private message:MessageService) { 
-    this.url=Common.ServiceUrl+"Account/";
-  }
+export class DashboardService {
+  private serviceUrl:string;
+  constructor(private http:HttpClient,private message:MessageService) {
+    this.serviceUrl= Common.ServiceUrl+"Dashboard/";
+   }
   
-  register(register:Register):Observable<any>{
-      return this.http.post(this.url+"Register",register).pipe(catchError(this.handleError.bind(this)));
+  getModules():Observable<any>{
+    return this.http.get(this.serviceUrl+"GetModules").pipe(catchError(this.handleError.bind(this)));
   }
-  
-  isLoggedIn():boolean {
-    //console.log(localStorage.getItem('ACCESS_TOKEN'));
-    return localStorage.getItem('ACCESS_TOKEN') != null;
-  }
-  public logout() {
-     localStorage.removeItem('ACCESS_TOKEN');
-  }
-  login(login:UserLogin):Observable<any>{
-    return this.http.post(this.url+"Login",login).pipe(catchError(this.handleError.bind(this)));
-}
 
   private handleError(error: HttpErrorResponse) {
     debugger;
@@ -75,4 +63,5 @@ debugger;
     return throwError(
       'Something bad happened; please try again later.');
   };
+
 }
