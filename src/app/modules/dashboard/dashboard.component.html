@@ -17,14 +17,14 @@
     </div>
     <div class="offcanvas offcanvas-end" [ngClass]="showRightMenu?'show':''" id="rowRightMenu">
         <div class="offcanvas-header">
-          <h4 class="offcanvas-title">Intesar Alam</h4>
+          <h4 class="offcanvas-title"><img src="../../../assets/images/User.png" alt="Logo" style="width:40px;" class="rounded-pill">&nbsp; {{userRegister.name}}</h4>
           <button type="button" class="btn-close"  (click)="showHideMenu()"></button>
         </div>
         <div class="offcanvas-body">
             <div class="container mt-3" style="padding: 0;">
                 <ul class="nav flex-column">
                   <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="bi bi-person"></i> Profile</a>
+                    <a class="nav-link" [routerLink]="['/dashboard/user_profile']" [queryParams]="{id:userRegister.id}"><i class="bi bi-person"></i> Profile</a>
                   </li>
                   <li class="nav-item" (click)="logOff()">
                     <a class="nav-link" href="#"><i class="bi bi-power"></i> Logout</a>

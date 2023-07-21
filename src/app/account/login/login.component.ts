@@ -39,6 +39,7 @@ export class LoginComponent {
       if(result!=null && result.token.length>0)
       {
         localStorage.setItem('ACCESS_TOKEN', result.token);
+        localStorage.setItem('USER_ID', result.userId);
         this.router.navigateByUrl("dashboard");
       }
       else{

@@ -25,6 +25,7 @@ export class AccountService {
   }
   public logout() {
      localStorage.removeItem('ACCESS_TOKEN');
+     localStorage.removeItem("USER_ID");
   }
   login(login:UserLogin):Observable<any>{
     return this.http.post(this.url+"Login",login).pipe(catchError(this.handleError.bind(this)));

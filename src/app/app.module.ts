@@ -14,6 +14,8 @@ import { LoaderComponent } from './common/loader/loader.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { MessageComponent } from './common/message/message.component';
 import { ErrorComponent } from './errors/error/error.component';
+import { UserProfileComponent } from './account/user-profile/user-profile.component';
+import { AccountInterceptor } from './services/account.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { ErrorComponent } from './errors/error/error.component';
     LoaderComponent,
     MessageComponent,
     ErrorComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,11 @@ import { ErrorComponent } from './errors/error/error.component';
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptor,
       multi: true,
+   },
+   {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AccountInterceptor,
+    multi: true
    },
   ],
   bootstrap: [AppComponent]

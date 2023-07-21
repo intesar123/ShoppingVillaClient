@@ -4,6 +4,7 @@ import { MessageService } from './message.service';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Common } from '../utilities/common';
 import { Module } from '../models/module';
+import { Register } from '../models/account/register';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,9 @@ export class DashboardService {
   
   getModules():Observable<any>{
     return this.http.get(this.serviceUrl+"GetModules").pipe(catchError(this.handleError.bind(this)));
+  }
+  getUserProfile(id:string):Observable<any>{
+    return this.http.get(this.serviceUrl+"GetUser?id="+id).pipe(catchError(this.handleError.bind(this)));
   }
 
   private handleError(error: HttpErrorResponse) {
