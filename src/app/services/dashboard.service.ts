@@ -18,6 +18,9 @@ export class DashboardService {
   getModules():Observable<any>{
     return this.http.get(this.serviceUrl+"GetModules").pipe(catchError(this.handleError.bind(this)));
   }
+  getMenu(id:number):Observable<any>{
+    return this.http.get(this.serviceUrl+"GetMenusByModule?moduleId="+id).pipe(catchError(this.handleError.bind(this)));
+  }
   getUserProfile(id:string):Observable<any>{
     return this.http.get(this.serviceUrl+"GetUser?id="+id).pipe(catchError(this.handleError.bind(this)));
   }

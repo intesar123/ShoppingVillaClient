@@ -1,0 +1,29 @@
+<div id="login">
+    <!-- <h3 class="text-center text-white pt-5"><img src="../../../assets/images/iconPNG.png" alt="img logo"/></h3> -->
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-12">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" [formGroup]="frmRole" (ngSubmit)="saveRole(frmRole)">
+                        <div id="register-link" class="col-md-12 text-left">
+                            <a [routerLink]="['/dashboard/user_settings/roles']" class="text-info" style="font-size: large;text-decoration: none;"><i class="bi bi-arrow-left-circle-fill"></i>&nbsp;Back to login</a>
+                        </div>
+                        <h3 class="text-center text-info">Role</h3>
+                        <div class="form-group">
+                            <input type="hidden" name="id" id="id" formControlName="id" class="form-control">
+                            <label for="name" class="text-info">Role:</label><br>
+                            <input type="text" name="name" id="name" formControlName="name" class="form-control">
+                            <span class="text-danger" *ngIf="(frmRole.get('name')?.errors?.['required'] && submitted)">
+                                Role is required
+                            </span>
+                        </div>
+                        <br/>
+                        <div class="form-group text-end">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="Add">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

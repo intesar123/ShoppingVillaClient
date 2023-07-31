@@ -1,1 +1,7 @@
-<p>users works!</p>
+<h2>User Setting Menus</h2>
+<ul>
+    <li *ngFor="let data of menus">
+        <a [routerLink]="['/dashboard/user_settings/'+data.alias]">{{data.name}}</a>
+    </li>
+</ul>
+

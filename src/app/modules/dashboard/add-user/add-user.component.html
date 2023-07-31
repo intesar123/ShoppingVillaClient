@@ -1,0 +1,76 @@
+<div id="login">
+    <!-- <h3 class="text-center text-white pt-5"><img src="../../../assets/images/iconPNG.png" alt="img logo"/></h3> -->
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+                        <div id="register-link" class="col-md-12 text-left">
+                            <a [routerLink]="['/dashboard/user_settings']" class="text-info" style="font-size: large;text-decoration: none;"><i class="bi bi-arrow-left-circle-fill"></i>&nbsp;Back</a>
+                        </div>
+                        <h3 class="text-center text-info"> Register </h3>
+                        <div class="form-group">
+                            <label for="username" class="text-info">User Name:</label><br>
+                            <input type="text" name="username" id="username" formControlName="userName" class="form-control">
+                            <span class="text-danger" *ngIf="(registerForm.get('userName')?.errors?.['required'] && submitted)">
+                                User Name is required
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="text-info">Name:</label><br>
+                            <input type="text" name="name" id="name" formControlName="name" class="form-control">
+                            <span class="text-danger" *ngIf="(registerForm.get('name')?.errors?.['required'] && submitted)">
+                            Name is required
+                        </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="roleName" class="text-info">Role:</label><br>
+                            <select name="roleName" id="roleName" placeholder="select role" formControlName="roleName" class="form-control">
+                                <option [value]=""></option>
+                                <option *ngFor="let opt of roles" [value]="opt.name" [selected]="opt.name==roleName">{{opt.name}}</option>
+                            </select>
+                            <span class="text-danger" *ngIf="(registerForm.get('roleName')?.errors?.['required'] && submitted)">
+                            Role is required
+                        </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="text-info">Email:</label><br>
+                            <input type="email" name="email" id="email" formControlName="email" class="form-control">
+                            <span class="text-danger" *ngIf="(registerForm.get('email')?.errors?.['required'] && submitted)">
+                                Email is required
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile" class="text-info">Mobile No.:</label><br>
+                            <input type="text" name="mobile" id="mobile" formControlName="mobile" class="form-control">
+                            <span class="text-danger" *ngIf="(registerForm.get('mobile')?.errors?.['required'] && submitted)">
+                                Mobile No. is required
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="text-info">Password:</label><br>
+                            <input type="text" name="password" id="password" formControlName="password" class="form-control">
+                            <span class="text-danger" *ngIf="(registerForm.get('password')?.errors?.['required'] && submitted)">
+                                Password is required
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword" class="text-info">Confirm Password:</label><br>
+                            <input type="password" name="confirmPassword" id="confirmPassword" formControlName="confirmPassword" class="form-control">
+                            <span class="text-danger" *ngIf="(registerForm.get('confirmPassword')?.errors?.['required'] && submitted)">
+                                Confirm Password is required
+                            </span>
+                            <span class="text-danger" *ngIf="(registerForm.errors?.['patwordmatcherror'] && submitted && !registerForm.get('confirmPassword')?.errors?.['required'])">
+                                Confirm Password should match with password
+                            </span>
+                        </div>
+                        <div class="form-group text-end">
+                            <br>
+                            <input type="submit" name="submit"  class="btn btn-info btn-md" value="Submit">
+                        </div>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

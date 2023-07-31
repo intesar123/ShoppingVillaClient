@@ -1,0 +1,10 @@
+#login {
+     background-color: rgb(219, 226, 236);
+     color: white;
+     margin-top: 50px;
+     padding: 10px;
+     max-width: 600px;
+}
+.text-info{
+    color: #0c0c0c!important;
+}

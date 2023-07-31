@@ -5,6 +5,7 @@ export class Register {
     email!:string;
     mobile!:string;
     password!:string;
+    roleName!:string;
     confirmPassword!:string;
     isActive!:boolean;
 }

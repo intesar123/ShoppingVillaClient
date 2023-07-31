@@ -12,7 +12,7 @@ export class MessageService {
    
   showMessage(status:string,message:string)
   {
-    this.messageToShow.next("Error "+status+': '+message);
+    this.messageToShow.next(status+': '+message);
   }
   
   hideMessage()

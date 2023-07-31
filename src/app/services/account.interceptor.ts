@@ -16,7 +16,6 @@ export class AccountInterceptor implements HttpInterceptor {
     const token= localStorage.getItem('ACCESS_TOKEN');
     if(token)
     {
-      console.log('added token in header: '+token);
       request=request.clone({
         setHeaders:{Authorization:'Bearer ' +token}
       });

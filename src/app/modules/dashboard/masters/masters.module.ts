@@ -7,7 +7,7 @@ import { MastersComponent } from './masters.component';
 
 @NgModule({
   declarations: [
-    MastersComponent
+    MastersComponent,
   ],
   imports: [
     CommonModule,

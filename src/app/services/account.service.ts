@@ -6,6 +6,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { LoaderService } from './loader.service';
 import { MessageService } from './message.service';
 import { UserLogin } from '../models/account/user-login';
+import { Role } from '../models/account/role';
 @Injectable({
   providedIn: 'root'
 })
@@ -24,14 +25,41 @@ export class AccountService {
     return localStorage.getItem('ACCESS_TOKEN') != null;
   }
   public logout() {
+    let token= localStorage.getItem('ACCESS_TOKEN');
      localStorage.removeItem('ACCESS_TOKEN');
      localStorage.removeItem("USER_ID");
+     return this.http.get(this.url+"Logout?Token="+token).pipe(catchError(this.handleError.bind(this)));
   }
   login(login:UserLogin):Observable<any>{
     return this.http.post(this.url+"Login",login).pipe(catchError(this.handleError.bind(this)));
 }
 
-  private handleError(error: HttpErrorResponse) {
+getAll():Observable<any>{
+  return this.http.get(this.url+"GetAll").pipe(catchError(this.handleError.bind(this)));
+}
+getUserRoles():Observable<any>{
+  return this.http.get(this.url+"Roles").pipe(catchError(this.handleError.bind(this)));
+}
+getUserRole(id:number):Observable<any>{
+  return this.http.get(this.url+"GetRole?id="+id).pipe(catchError(this.handleError.bind(this)));
+}
+
+deleteRole(id:number):Observable<any>{
+  return this.http.delete(this.url+"DeleteRole?id="+id).pipe(catchError(this.handleError.bind(this)));
+}
+
+saveRole(role:Role):Observable<any>{
+  if(role.id==0)
+  {
+    return this.http.post(this.url+"AddRole",role).pipe(catchError(this.handleError.bind(this)));
+  }
+  else{
+    return this.http.put(this.url+"UpdateRole",role).pipe(catchError(this.handleError.bind(this)));
+  }
+  
+}
+
+private handleError(error: HttpErrorResponse) {
     debugger;
     //alert(error.status);
     //alert(error.error.message);

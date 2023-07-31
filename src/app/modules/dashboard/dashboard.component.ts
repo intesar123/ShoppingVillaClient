@@ -25,7 +25,6 @@ export class DashboardComponent {
     userId=localStorage.getItem("USER_ID");
     this.dashboard.getUserProfile(userId).subscribe(result=>{
         this.userRegister=result;
-        console.log(this.userRegister);
     });
     
   }
@@ -39,11 +38,18 @@ export class DashboardComponent {
   }
   logOff()
   {
-    this.account.logout();
+    this.account.logout().subscribe(result=>{
+      console.log(result);
+    });
   }
   clickEvent(){
       this.status = !this.status;       
   }
+
+  HideMenu(){
+    this.loaderService.showHideRightMenu(false);
+  }
+
   showHideMenu(){
     this.loaderService.showHideRightMenu(!this.showRightMenu);
   }

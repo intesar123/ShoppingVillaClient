@@ -1,0 +1,17 @@
+<h2>Role</h2>
+<table class="table btn-stripped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th><button class="btn btn-primary" [routerLink]="['/dashboard/user_settings/add_role']">Add</button></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of roles">
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td><button type="button" class="btn btn-danger" (click)="deleteRole(data.id)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
