@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { DashboardComponent } from '../../dashboard.component';
 import { DashboardService } from 'src/app/services/dashboard.service';
-import { toFormData } from 'src/app/utilities/common-funtions';
+import { getBase64, getFileBaseType, toFormData } from 'src/app/utilities/common-funtions';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-add-product-category',
@@ -11,8 +12,9 @@ import { toFormData } from 'src/app/utilities/common-funtions';
   styleUrls: ['./add-product-category.component.css']
 })
 export class AddProductCategoryComponent {
-  frmProdCategory!: FormGroup
-  constructor(private service:DashboardService) {
+  frmProdCategory!: FormGroup;
+  file!:string;
+  constructor(private service:DashboardService,private loderService:LoaderService) {
     
   }
 
@@ -28,12 +30,19 @@ export class AddProductCategoryComponent {
   }
 
   onChange(event:any) {
-    console.log("file changed");
+    //console.log(event);
     if(event.target.files.length>0){
       const file= event.target.files[0];
       this.frmProdCategory.patchValue({image:file});
-      console.log("fileName"+file.name);
+      //console.log("fileName"+file.name);
+      this.loderService.show();
       this.frmProdCategory.patchValue({fileName:file.name});
+      var img=getBase64(file).then(r=>{
+        this.file=String(r);
+        this.loderService.hide();
+      });
+      //console.log(r);
+      //this.file=getFileBaseType(file.name)+img;
     }
   }
 

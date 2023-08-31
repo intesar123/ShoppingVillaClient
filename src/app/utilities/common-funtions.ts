@@ -35,7 +35,6 @@ export async function getBase64(file:File) {
  
 export function getFileBaseType(fileName:string):any
 {
-    debugger;
     if(fileName==null)
     {
         return null;
