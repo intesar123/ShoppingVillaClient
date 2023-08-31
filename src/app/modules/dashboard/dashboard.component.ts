@@ -21,9 +21,9 @@ export class DashboardComponent {
   ngOnInit(){
     this.loaderService.isToShowRightMenu.subscribe(x=>this.showRightMenu=x);
     this.loadModules();
-    let userId:any;
-    userId=localStorage.getItem("USER_ID");
-    this.dashboard.getUserProfile(userId).subscribe(result=>{
+    let token:any;
+    token=localStorage.getItem("ACCESS_TOKEN");
+    this.dashboard.getUserProfile(token).subscribe(result=>{
         this.userRegister=result;
     });
     

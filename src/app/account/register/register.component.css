@@ -4,14 +4,14 @@ body {
   background-color: #374444!important;
   height: 100vh;
 }
-  #login .container #login-row #login-column #login-box {
+  #register .container #register-row #register-column #register-box {
     margin-top: 120px;
     max-width: 600px;
     height: 750px;
     border: 1px solid #9C9C9C;
     background-color: #EAEAEA;
   }
-  #login .container #login-row #login-column #login-box #login-form {
+  #register .container #register-row #register-column #register-box #register-form {
     padding: 20px;
   }
 

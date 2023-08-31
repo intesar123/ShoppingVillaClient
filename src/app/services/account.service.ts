@@ -27,7 +27,6 @@ export class AccountService {
   public logout() {
     let token= localStorage.getItem('ACCESS_TOKEN');
      localStorage.removeItem('ACCESS_TOKEN');
-     localStorage.removeItem("USER_ID");
      return this.http.get(this.url+"Logout?Token="+token).pipe(catchError(this.handleError.bind(this)));
   }
   login(login:UserLogin):Observable<any>{

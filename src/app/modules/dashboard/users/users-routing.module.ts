@@ -7,6 +7,7 @@ import { accountGuard } from 'src/app/services/account.guard';
 import { UserSettingsComponent } from '../user-settings/user-settings.component';
 import { RolesComponent } from './roles/roles.component';
 import { AddRoleComponent } from './add-role/add-role.component';
+import { MenusComponent } from '../menus/menus.component';
 
 const routes: Routes = [{ path: '', component: UsersComponent },
 { path: 'user_profile', component: UserProfileComponent, canActivate:[accountGuard] },
@@ -15,6 +16,7 @@ const routes: Routes = [{ path: '', component: UsersComponent },
     { path: 'edit_user', component: AddUserComponent, canActivate:[accountGuard] },
     { path: 'roles', component: RolesComponent, canActivate:[accountGuard] },
     { path: 'add_role', component: AddRoleComponent, canActivate:[accountGuard] },
+    { path: 'menus', component: MenusComponent, canActivate:[accountGuard] },
 ];
 
 @NgModule({

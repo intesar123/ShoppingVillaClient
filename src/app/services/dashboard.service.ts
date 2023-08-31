@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { MessageService } from './message.service';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Common } from '../utilities/common';
-import { Module } from '../models/module';
-import { Register } from '../models/account/register';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +19,19 @@ export class DashboardService {
   getMenu(id:number):Observable<any>{
     return this.http.get(this.serviceUrl+"GetMenusByModule?moduleId="+id).pipe(catchError(this.handleError.bind(this)));
   }
-  getUserProfile(id:string):Observable<any>{
-    return this.http.get(this.serviceUrl+"GetUser?id="+id).pipe(catchError(this.handleError.bind(this)));
+  getMenus():Observable<any>{
+    return this.http.get(this.serviceUrl+"GetMenus").pipe(catchError(this.handleError.bind(this)));
   }
-
+  getUserProfile(token:string):Observable<any>{
+    return this.http.get(this.serviceUrl+"GetUser?token="+token).pipe(catchError(this.handleError.bind(this)));
+  }
+  getUser(id:number):Observable<any>{
+    return this.http.get(this.serviceUrl+"GetUserById?id="+id).pipe(catchError(this.handleError.bind(this)));
+  }
+  addProductCategory(formData:FormData):Observable<any>{
+    return this.http.post(this.serviceUrl+"AddProductCategory",formData).pipe(catchError(this.handleError.bind(this)));
+  }
+  
   private handleError(error: HttpErrorResponse) {
     debugger;
     //alert(error.status);

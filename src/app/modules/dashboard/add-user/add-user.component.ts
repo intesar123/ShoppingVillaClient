@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { matchpassword } from 'src/app/common/validators/passwordMatch.validator';
@@ -10,7 +10,8 @@ import { MessageService } from 'src/app/services/message.service';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css']
+  styleUrls: ['./add-user.component.css'],
+  encapsulation:ViewEncapsulation.None
 })
 export class AddUserComponent {
   registerForm!: FormGroup;
@@ -42,7 +43,7 @@ export class AddUserComponent {
       let userId= params['id'];
       if(userId!=null && userId.length>0)
       {
-        this.dashboard.getUserProfile(userId).subscribe(result=>{
+        this.dashboard.getUser(userId).subscribe(result=>{
           //console.log(result);
           this.roleName=result.roleName;
           this.registerForm.patchValue(result);

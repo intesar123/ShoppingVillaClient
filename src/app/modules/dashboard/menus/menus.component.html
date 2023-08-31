@@ -1,0 +1,17 @@
+<h2>Menus</h2>
+<table class="table btn-stripped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Parent</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of menus" [ngStyle]="data.parentId==0?{'font-weight': 'bold'}: {}">
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.parentId}}</td>
+        </tr>
+    </tbody>
+</table>

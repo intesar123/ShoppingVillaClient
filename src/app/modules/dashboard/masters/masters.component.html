@@ -1,1 +1,8 @@
-<p>masters works!</p>
+<ul>
+    <li *ngFor="let data of menus" style="list-style-type: none;">
+        <h4 *ngIf="data.parentId==0;else lnk">{{data.name}}</h4>
+        <ng-template #lnk>
+            <a [routerLink]="['/dashboard/masters/'+data.alias]">{{data.name}}</a>
+        </ng-template>
+    </li>
+</ul>

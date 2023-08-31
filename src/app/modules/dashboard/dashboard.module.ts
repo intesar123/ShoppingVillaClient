@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { MenusComponent } from './menus/menus.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
     DashboardComponent,
     AddUserComponent,
     UserSettingsComponent,
+    MenusComponent,
   ],
   imports: [
     CommonModule,

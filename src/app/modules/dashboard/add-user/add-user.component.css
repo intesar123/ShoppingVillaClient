@@ -4,14 +4,14 @@ body {
     background-color: #374444!important;
     height: 100vh;
   }
-    #login .container #login-row #login-column #login-box {
+    #adduser .container #adduser-row #adduser-column #adduser-box {
       margin-top: 50px;
       max-width: 600px;
       height: 750px;
       border: 1px solid #9C9C9C;
       background-color: #EAEAEA;
     }
-    #login .container #login-row #login-column #login-box #login-form {
+    #adduser .container #adduser-row #adduser-column #adduser-box #adduser-form {
       padding: 20px;
     }
   

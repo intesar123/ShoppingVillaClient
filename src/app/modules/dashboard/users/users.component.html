@@ -1,7 +1,9 @@
-<h2>User Setting Menus</h2>
 <ul>
-    <li *ngFor="let data of menus">
-        <a [routerLink]="['/dashboard/user_settings/'+data.alias]">{{data.name}}</a>
+    <li *ngFor="let data of menus" style="list-style-type: none;">
+        <h4 *ngIf="data.parentId==0;else lnk">{{data.name}}</h4>
+        <ng-template #lnk>
+            <a [routerLink]="['/dashboard/user_settings/'+data.alias]">{{data.name}}</a>
+        </ng-template>
     </li>
 </ul>
 
