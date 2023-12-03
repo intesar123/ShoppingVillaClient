@@ -74,6 +74,21 @@ export class DashboardService {
   deleteProduct(id:number):Observable<any>{
     return this.http.delete(this.serviceUrl+"DeleteProduct?id="+id).pipe(catchError(this.handleError.bind(this)));
   }
+  addUnit(formData:FormData):Observable<any>{
+    return this.http.post(this.serviceUrl+"AddUnit",formData).pipe(catchError(this.handleError.bind(this)));
+  }
+  updateUnit(formData:FormData):Observable<any>{
+    return this.http.put(this.serviceUrl+"UpdateUnit",formData).pipe(catchError(this.handleError.bind(this)));
+  }
+  getUnit(id:string):Observable<any>{
+    return this.http.get(this.serviceUrl+"GetUnit?id="+id).pipe(catchError(this.handleError.bind(this)));
+  }
+  getUnits():Observable<any>{
+    return this.http.get(this.serviceUrl+"GetUnits").pipe(catchError(this.handleError.bind(this)));
+  }
+  deleteUnit(id:number):Observable<any>{
+    return this.http.delete(this.serviceUrl+"DeleteUnit?id="+id).pipe(catchError(this.handleError.bind(this)));
+  }
   private handleError(error: HttpErrorResponse) {
    
     if (error.status == 401) {

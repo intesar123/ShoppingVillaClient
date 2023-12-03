@@ -1,0 +1,30 @@
+<br/>
+<form [formGroup]="frmUnit" (ngSubmit)="submit()">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-end">
+                <a [routerLink]="['/dashboard/masters/units']" class="text-info" style="font-size: large;text-decoration: none;"><i class="bi bi-arrow-left-circle-fill"></i>&nbsp;Back</a>
+            </div>
+            <div class="col-lg-12">
+                <h3>Unit Master</h3>
+            </div>
+            <div class="col-lg-6">
+                <input type="hidden" formControlName="id"/>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" formControlName="name" class="form-control"/>
+                <span class="text-danger" *ngIf="(frmUnit.get('name')?.errors?.['required']) && submitted">Name field is required</span>
+            </div>
+            <div class="col-lg-6">
+                <label for="description">Description</label>
+                <textarea class="form-control" formControlName="description"></textarea>
+                <span class="text-danger" *ngIf="(frmUnit.get('description')?.errors?.['required']) && submitted">Description field is required</span>
+            </div>
+            <div class="col-lg-12 text-end">
+                <br/>
+                <button type="submit" class="btn-primary">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

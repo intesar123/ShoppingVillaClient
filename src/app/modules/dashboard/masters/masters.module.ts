@@ -10,6 +10,8 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { ProductsComponent } from './products/products.component';
 import { BrandsComponent } from './brands/brands.component';
 import { AddBrandComponent } from './add-brand/add-brand.component';
+import { UnitMasterComponent } from './unit/unit-master/unit-master.component';
+import { AddUnitComponent } from './unit/add-unit/add-unit.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { AddBrandComponent } from './add-brand/add-brand.component';
     ProductsComponent,
     BrandsComponent,
     AddBrandComponent,
+    UnitMasterComponent,
+    AddUnitComponent,
   ],
   imports: [
     CommonModule,
