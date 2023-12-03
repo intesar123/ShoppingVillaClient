@@ -5,6 +5,8 @@ import { DashboardComponent } from '../../dashboard.component';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { getBase64, getFileBaseType, toFormData } from 'src/app/utilities/common-funtions';
 import { LoaderService } from 'src/app/services/loader.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Common } from 'src/app/utilities/common';
 
 @Component({
   selector: 'app-add-product-category',
@@ -14,7 +16,8 @@ import { LoaderService } from 'src/app/services/loader.service';
 export class AddProductCategoryComponent {
   frmProdCategory!: FormGroup;
   file!:string;
-  constructor(private service:DashboardService,private loderService:LoaderService) {
+  submitted:boolean=false;
+  constructor(private service:DashboardService,private loderService:LoaderService,private route:ActivatedRoute,private router:Router) {
     
   }
 
@@ -22,33 +25,48 @@ export class AddProductCategoryComponent {
     this.frmProdCategory= new FormGroup({
       'id': new FormControl('0'),
        'name': new FormControl('',Validators.required),
-       'description': new FormControl('',Validators.required),
-       'fileName': new FormControl('',Validators.required),
-       'isActive':new FormControl(false,Validators.required),
-       'image': new FormControl(null, [Validators.required])
+       'description': new FormControl(''),
+       'fileName': new FormControl(''),
+       'isActive':new FormControl(false),
+       'image': new FormControl(null)
+    });
+
+    this.route.queryParamMap.subscribe(params=>{
+      let id=params.get('id');
+      if(id!=undefined){
+        this.getCategory(id);
+      }
     });
   }
 
+  getCategory(id:string)
+  {
+    this.service.getProductCategory(id).subscribe(r=>{
+      this.file=Common.BaseUrl + r["fileName"];
+      this.frmProdCategory.patchValue(r);
+    })
+  }
+
   onChange(event:any) {
-    //console.log(event);
     if(event.target.files.length>0){
       const file= event.target.files[0];
       this.frmProdCategory.patchValue({image:file});
-      //console.log("fileName"+file.name);
       this.loderService.show();
+      let fileName= this.frmProdCategory.get('fileName');
       this.frmProdCategory.patchValue({fileName:file.name});
       var img=getBase64(file).then(r=>{
         this.file=String(r);
         this.loderService.hide();
       });
-      //console.log(r);
-      //this.file=getFileBaseType(file.name)+img;
     }
   }
 
   submit(form:FormGroup){
-    console.log(form);
 
+    this.submitted=true;
+    if(form.invalid){
+      return;
+    }
     const formData = toFormData(form);
     // formData.append('id',form.get("id")?.value);
     // formData.append('name',form.get("name")?.value);
@@ -56,8 +74,28 @@ export class AddProductCategoryComponent {
     // formData.append('description',form.get("description")?.value);
     // formData.append('isActive',form.get("isActive")?.value);
     // formData.append('image',form.get("image")?.value);
-    this.service.addProductCategory(formData).subscribe(result=>{
-      console.log(result);
-    })
+    let id=form.get("id")?.value;
+    if(id==0)
+    {
+      this.service.addProductCategory(formData).subscribe(result=>{
+        if(result==1){
+          this.loadCategories();
+        }
+      })
+    }
+    else
+    {
+      this.service.updateProductCategory(formData).subscribe(result=>{
+        if(result==1){
+          this.loadCategories();
+        }
+      })
+    }
+  
+  }
+
+  loadCategories()
+  {
+    this.router.navigateByUrl('/dashboard/masters/product_categories');
   }
 }

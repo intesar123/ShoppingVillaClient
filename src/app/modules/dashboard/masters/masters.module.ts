@@ -6,6 +6,10 @@ import { MastersComponent } from './masters.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { AddProductCategoryComponent } from './add-product-category/add-product-category.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddProductComponent } from './add-product/add-product.component';
+import { ProductsComponent } from './products/products.component';
+import { BrandsComponent } from './brands/brands.component';
+import { AddBrandComponent } from './add-brand/add-brand.component';
 
 
 @NgModule({
@@ -13,6 +17,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MastersComponent,
     ProductCategoryComponent,
     AddProductCategoryComponent,
+    AddProductComponent,
+    ProductsComponent,
+    BrandsComponent,
+    AddBrandComponent,
   ],
   imports: [
     CommonModule,

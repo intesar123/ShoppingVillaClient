@@ -1,0 +1,45 @@
+<br/>
+<form [formGroup]="frmBrand" (submit)="onSubmit()">
+<div class="container">
+    <div class="row">
+        <div id="register-link" class="col-md-12 text-left">
+            <a [routerLink]="['/dashboard/masters/brands']" class="text-info" style="font-size: large;text-decoration: none;"><i class="bi bi-arrow-left-circle-fill"></i>&nbsp;Back</a>
+        </div>
+        <div class="col-lg-12">
+            <h3>Add/Modify Brand</h3>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <input type="hidden" id="id" name="id" formControlName="id" />
+                <input type="hidden" id="fileName" name="fileName" formControlName="fileName" />
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" class="form-control" formControlName="name" />
+                <span class="text-danger" *ngIf="(frmBrand.get('name')?.errors?.['required']) && sumitted">
+                    Name is required
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" class="form-control" formControlName="description"></textarea>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="name">Logo</label>
+                <input type="file" name="image" id="image" accept=".png,.jpeg,.gif" class="form-control" (change)="onChange($event)"  />
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <br/>
+            <img *ngIf="fileName==null || fileName.length==0" src="/assets/images/image_blank.png" style="height: 200px; width: 200px;" />
+            <img *ngIf="fileName!=null && fileName.length>0" src="{{fileName}}" style="height: 200px; width: 200px;" />
+        </div>
+        <div class="col-lg-12 text-end">
+            <br/>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</div>
+</form>

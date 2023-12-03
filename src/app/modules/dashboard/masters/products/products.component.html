@@ -1,0 +1,26 @@
+<div class="container">
+    <h3>Products</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>
+                    <button type="button" routerLink="/dashboard/masters/add_product">Add</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of products">
+                <td>{{data.id}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.description}}</td>
+                <td>
+                    <button type="button" routerLink="/dashboard/masters/eidt_product" [queryParams]="{id:data.id}">Edit</button>|
+                    <button type="button" (click)="deleteProduct(data.id)" >Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
